@@ -45,7 +45,7 @@ var playerCore = {
             console.log("Creating instance for " + id);
             this.instances[id] = {
                 stream,
-                offset: 0,
+                offset: this.buffer.length,
                 connection
             }
             connection.playStream(stream);
