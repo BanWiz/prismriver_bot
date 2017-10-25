@@ -125,7 +125,7 @@ module.exports = {
     stopInstance: function (guild) {
         playerCore.removeInstance(guild);
     },
-    getInstance: function (guild) {
-        return playerCore.instances[guild];
+    getInstanceList: function () {
+        return playerCore.instances;
     }
 }
