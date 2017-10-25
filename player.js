@@ -48,7 +48,10 @@ var playerCore = {
                 offset: this.buffer.length,
                 connection
             }
-            connection.playStream(stream);
+            connection.playStream(stream, {
+                passes: 2, //Possibly will stabilize the connection
+                bitrate: "auto"
+            });
             callback(true);
         })
     },
