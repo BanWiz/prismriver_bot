@@ -27,7 +27,7 @@ class Metadata extends EventEmitter {
                     this.metadata.album = songInfo.ALBUM[0];
                     this.metadata.year = songInfo.YEAR[0];
                     this.metadata.circle = songInfo.CIRCLE[0];
-                    this.metadata.albumart = result.GENSOKYORADIODATA.MISC[0].ALBUMART[0] || "gr6_circular.png";
+                    this.metadata.albumart = result.GENSOKYORADIODATA.MISC[0].ALBUMART[0];
 
                     console.log(this.metadata);
 
