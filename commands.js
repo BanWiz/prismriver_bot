@@ -26,6 +26,7 @@ module.exports = function (message) {
                 message.reply("Ok, stopping playing");
                 player.stopInstance(message.guild.id);
             }
+            break;
         case '.prismriver streams':
             var list = player.getInstanceList();
             var num = 0;
