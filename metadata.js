@@ -29,8 +29,6 @@ class Metadata extends EventEmitter {
                     this.metadata.circle = songInfo.CIRCLE[0];
                     this.metadata.albumart = result.GENSOKYORADIODATA.MISC[0].ALBUMART[0];
 
-                    console.log(this.metadata);
-
                     setTimeout(() => this.load(), time);
 
                     this.emit("update", this.metadata);
