@@ -10,12 +10,13 @@ client.on('ready', () => {
 });
 
 metadata.on('update', data => {
+  console.log("Updating...");
   var str = data.artist;
   if(data.circle) {
     str += '(' + data.circle + ')';
   }
   str += ' - ' + data.title;
-  client.user.setGame(str);
+  client.user.setGame(str).catch((e)=>{console.log("Error while changing metadata");};
 });
 
 client.on('message', commands);
