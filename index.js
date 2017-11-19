@@ -16,7 +16,7 @@ metadata.on('update', data => {
     str += '(' + data.circle + ')';
   }
   str += ' - ' + data.title;
-  client.user.setGame(str).catch((e)=>{console.log("Error while changing metadata");};
+  client.user.setGame(str).catch((e)=>{console.log("Error while changing metadata");});
 });
 
 client.on('message', commands);
