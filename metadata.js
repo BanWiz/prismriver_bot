@@ -20,7 +20,10 @@ class Metadata extends EventEmitter {
             res.on('data', chunk => buffer += chunk);
             res.on('end', () => {
                 parseString(buffer, (err, result) => {
-                    var time = parseInt(result.GENSOKYORADIODATA.SONGTIMES[0].REMAINING[0], 10) * 1000  ;
+                    var time = parseInt(result.GENSOKYORADIODATA.SONGTIMES[0].REMAINING[0], 10) * 1000;
+                    if(time <= 0) {
+                        time = 1000;
+                    }
                     var songInfo = result.GENSOKYORADIODATA.SONGINFO[0];
                     this.metadata.artist = songInfo.ARTIST[0];
                     this.metadata.title = songInfo.TITLE[0];
@@ -33,8 +36,8 @@ class Metadata extends EventEmitter {
 
                     this.emit("update", this.metadata);
                 });
-            })
-        })
+            });
+        });
     }
 }
 
