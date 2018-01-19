@@ -55,12 +55,12 @@ var playerCore = {
             callback(true);
         })
     },
-    removeInstance: function(id) {
+    removeInstance: function (id) {
         console.log("Removing instance " + id);
         var instance = this.instances[id];
         instance.connection.disconnect();
         delete this.instances[id];
-        for(var key in this.instances) {
+        for (var key in this.instances) {
             return;
         }
         console.log("Last instance was removed");
@@ -73,6 +73,9 @@ var playerCore = {
         this.httpClient = http.get('http://stream.gensokyoradio.net:8000/stream/1/listen.mp3', res => {
             res.on('data', chunk => {
                 var minOffset = this.getMinOffset();
+                if (this.buffer.length > minOffset) {
+                    console.log("Some data (" + (this.buffer.length - minOffset) + " Bytes) left to read!!!");
+                }
                 if (minOffset === this.buffer.length) {
                     this.buffer = chunk;
                 } else {
@@ -89,13 +92,13 @@ var playerCore = {
         this.started = false;
     },
     getData: function (id, size, callback) {
-        if(!this.instances[id]) {
+        if (!this.instances[id]) {
             callback(null);
             return;
         }
         if (this.instances[id].offset >= this.buffer.length) {
             for (var i = 0; i < this.waiters.length; i++) {
-                if (this.waiters.id === id) {
+                if (this.waiters[i].id === id) {
                     return;
                 }
             }
